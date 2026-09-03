@@ -1,0 +1,20 @@
+RAILWAY DEPLOYMENT
+==================
+
+1. Deploy this project to Railway. Railway will detect Node.js from package.json.
+2. Start Command: `npm start` (runs `node server.js`).
+3. In Railway Variables, add:
+   ADMIN_USERNAME=your_admin_username
+   ADMIN_PASSWORD=your_strong_password
+4. Add a Railway Volume to this service and set its Mount Path to:
+   /data
+   The server automatically uses Railway's RAILWAY_VOLUME_MOUNT_PATH and stores appointments.db there.
+5. In Settings -> Networking, generate a public domain.
+6. Optional Healthcheck Path: `/health`
+
+IMPORTANT
+---------
+- Do NOT set the start command to `node script.js`. `script.js` is browser-side JavaScript.
+- Only files inside `public/` are exposed by the web server. Server code, package files, and the SQLite database are not public.
+- The database is created on the attached volume at runtime.
+- Railway injects the PORT variable; the server listens on it.

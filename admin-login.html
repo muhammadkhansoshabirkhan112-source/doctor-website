@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login | Dr. Tanzil Ur Rehman</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 24px;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #234b48 0,
+                    transparent 35%
+                ),
+                #0b2020;
+
+            font-family: "DM Sans", sans-serif;
+
+            color: #1d2928;
+
+        }
+
+
+        .login-wrapper {
+
+            width: 100%;
+
+            max-width: 440px;
+
+        }
+
+
+        /* =========================
+           BRAND
+        ========================= */
+
+        .brand {
+
+            text-align: center;
+
+            color: white;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .brand-mark {
+
+            width: 64px;
+
+            height: 64px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid #d0ad6d;
+
+            border-radius: 18px;
+
+            color: #d0ad6d;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 25px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.05
+                );
+
+        }
+
+
+        .brand h1 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 27px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .brand p {
+
+            color: #b9c5c3;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-card {
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 38px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.30
+                );
+
+        }
+
+
+        .badge {
+
+            display: inline-flex;
+
+            padding: 7px 11px;
+
+            border-radius: 999px;
+
+            background: #f4ecdf;
+
+            color: #9b7338;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.2px;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .login-card h2 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 30px;
+
+            color: #102c2b;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .description {
+
+            color: #71807e;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        /* =========================
+           ERROR MESSAGE
+        ========================= */
+
+        .error-message {
+
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            background: #fdf0f0;
+
+            border: 1px solid #f1d0d0;
+
+            color: #a33c3c;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .field {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .field label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #344240;
+
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: 1px solid #dddcd5;
+
+            border-radius: 11px;
+
+            padding: 0 15px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            color: #1d2928;
+
+            background: #fafaf8;
+
+            transition: 0.2s;
+
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color: #b28a45;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(
+                    178,
+                    138,
+                    69,
+                    0.10
+                );
+
+        }
+
+
+        .input-wrapper input::placeholder {
+
+            color: #a1aaa8;
+
+        }
+
+
+        /* =========================
+           PASSWORD SHOW/HIDE
+        ========================= */
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 12px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #71807e;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+        .password-toggle:hover {
+
+            color: #102c2b;
+
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 54px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #102c2b;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s,
+                transform 0.2s;
+
+        }
+
+
+        .login-button:hover {
+
+            background: #17403e;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .login-button:active {
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .login-button:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* =========================
+           BACK LINK
+        ========================= */
+
+        .back-link {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #71807e;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+        }
+
+
+        .back-link:hover {
+
+            color: #102c2b;
+
+        }
+
+
+        /* =========================
+           SECURITY NOTE
+        ========================= */
+
+        .security-note {
+
+            margin-top: 22px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #eceae3;
+
+            text-align: center;
+
+            color: #8a9492;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 520px) {
+
+            body {
+
+                padding: 16px;
+
+            }
+
+
+            .login-card {
+
+                padding: 28px 22px;
+
+            }
+
+
+            .brand h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            .brand-mark {
+
+                width: 58px;
+
+                height: 58px;
+
+                font-size: 22px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="login-wrapper">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                TR
+            </div>
+
+            <h1>
+                Dr. Tanzil Ur Rehman
+            </h1>
+
+            <p>
+                Gastroenterology Practice
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <section class="login-card">
+
+
+            <span class="badge">
+                SECURE ADMIN AREA
+            </span>
+
+
+            <h2>
+                Welcome Back
+            </h2>
+
+
+            <p class="description">
+
+                Sign in to manage patient appointment
+                requests and your practice dashboard.
+
+            </p>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="errorMessage"
+                class="error-message"
+            ></div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
+
+
+                <!-- USERNAME -->
+
+                <div class="field">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword"
+                        >
+                            SHOW
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+                    Sign In
+                </button>
+
+
+            </form>
+
+
+            <!-- BACK TO WEBSITE -->
+
+            <a
+                href="/"
+                class="back-link"
+            >
+                ← Back to website
+            </a>
+
+
+            <!-- SECURITY -->
+
+            <div class="security-note">
+
+                🔒 Secure administrator access.
+                Your login session is protected.
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+
+        // ===============================
+        // ELEMENTS
+        // ===============================
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        const errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
+
+        const togglePassword =
+            document.getElementById(
+                "togglePassword"
+            );
+
+
+        // ===============================
+        // PASSWORD SHOW / HIDE
+        // ===============================
+
+        togglePassword.addEventListener(
+            "click",
+            () => {
+
+                const isPassword =
+                    passwordInput.type ===
+                    "password";
+
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                togglePassword.textContent =
+                    isPassword
+                        ? "HIDE"
+                        : "SHOW";
+
+            }
+        );
+
+
+        // ===============================
+        // LOGIN
+        // ===============================
+
+        loginForm.addEventListener(
+            "submit",
+            async (event) => {
+
+                event.preventDefault();
+
+
+                // Hide previous error
+
+                errorMessage.style.display =
+                    "none";
+
+
+                const username =
+                    document
+                        .getElementById(
+                            "username"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    passwordInput.value;
+
+
+                // Loading state
+
+                loginButton.disabled =
+                    true;
+
+                loginButton.textContent =
+                    "Signing In...";
+
+
+                try {
+
+
+                    const response =
+                        await fetch(
+                            "/api/admin/login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                credentials:
+                                    "same-origin",
+
+                                body:
+                                    JSON.stringify({
+                                        username:
+                                            username,
+
+                                        password:
+                                            password
+                                    })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            data.message ||
+                            "Invalid username or password."
+                        );
+
+                    }
+
+
+                    // Successful login
+
+                    window.location.href =
+                        "/admin";
+
+
+                } catch (error) {
+
+
+                    errorMessage.textContent =
+                        error.message ||
+                        "Unable to sign in. Please try again.";
+
+
+                    errorMessage.style.display =
+                        "block";
+
+
+                    loginButton.disabled =
+                        false;
+
+
+                    loginButton.textContent =
+                        "Sign In";
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
